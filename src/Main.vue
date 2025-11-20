@@ -69,6 +69,25 @@
             </div>
         </div>
     </div>
+    <div class="bg-contact" v-if="showContactModal" @click.self="closeContactModal">
+        <div class="contact">
+            <h1>Contactez-moi</h1>
+            <div class="identity">
+                <label for="name"></label>
+                <input type="text" class="name" name="name" placeholder="Votre nom" />
+                <label for="surname"></label>
+                <input type="text" class="surname" name="surname" placeholder="Votre prénom" />
+            </div>
+            <div class="obj">
+                <label for="object"></label>
+                <input type="text" class="object" name="object" placeholder="Objet" />
+            </div>
+            <label for="message"></label>
+            <textarea class="message" name="message" placeholder="Votre message"></textarea>
+            <button type="submit">Envoyer</button>
+        </div>
+    </div>
+    <button class="btncontactmdl" @click="openContactModal">Contact</button> 
     
 </template>
 
@@ -77,14 +96,128 @@ import { ref } from 'vue'
 
 const showCvModal = ref(false);
 const showAvisModal = ref(false);
+const showContactModal = ref(false);
 
 const openCvModal = () => (showCvModal.value = true);
 const closeCvModal = () => (showCvModal.value = false);
 const openAvisModal = () => (showAvisModal.value = true);
 const closeAvisModal = () => (showAvisModal.value = false);
+const openContactModal = () => (showContactModal.value = true);
+const closeContactModal = () => (showContactModal.value = false);
 </script>
 
 <style scoped>
+
+/** Partie Contact **/
+
+.btncontactmdl {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    background-color: skyblue;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+
+.btncontactmdl:hover {
+    cursor: pointer;
+    background-color: deepskyblue;
+    color: white;
+    transform: scale(1.03);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.contact button {
+    width: 100%;
+    height: 2.5rem;
+    border: solid black 2px;
+    border-radius: 8px;
+    background-color: skyblue;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background-color: deepskyblue;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.contact h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: cyan;
+}
+
+.message {
+    padding: 0.5rem 0.5rem 5rem 0.3rem;
+    width: 97%;
+    height: 8rem;
+    border: solid black 2px;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    font-size: 14px;
+}
+
+.object {
+    width: 97%;
+}
+
+.identity .name {
+    width: 46%;
+    margin-right: 1rem;
+}
+
+.identity .surname {
+    width: 46%;
+}
+
+.identity .name, .identity .surname, .object {
+    padding: 0.5rem 0.5rem 0.5rem 0.3rem;
+    height: 1.7rem;
+    border: solid black 2px;
+    border-radius: 8px;
+}
+
+.identity, .obj {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.identity {
+    display: flex;
+}
+
+.bg-contact {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 2rem 1rem 2rem;
+    background-color: lightcyan;
+    padding: 2rem auto 2rem auto;
+    width: 30%;
+    margin: auto;
+    border-radius: 12px;
+    z-index: 10000;
+}
 
 /** Partie Avis **/
 
@@ -246,7 +379,7 @@ const closeAvisModal = () => (showAvisModal.value = false);
     transform: scale(1.02);
     transition: transform 0.3s;
     cursor: pointer;
-    box-shadow: 10px 10px;
+    box-shadow: 10px 10px 15px black;
 }
 
 .line {
